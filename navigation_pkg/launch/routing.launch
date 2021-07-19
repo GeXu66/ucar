@@ -1,0 +1,31 @@
+<launch>
+    <param name="inflation_r" value="0.25"/>
+    <param name="timeWeight" value="7000.0"/>
+    <param name="accWeight" value="1.0"/>
+    <param name="jerkWeight" value="3.0"/>
+    <param name="maxAcc" value="0.2"/>
+    <param name="maxVel" value="0.2"/>
+    <param name="globalDstX" value="0.589"/>
+    <param name="globalDstY" value="-1.734"/>
+    <param name="globalOriX" value="-1.0"/>
+    <param name="globalOriY" value="0.0"/>
+    <param name="linearKPP" value="0.8"/>
+    <param name="linearKP" value="1.0"/>
+    <param name="linearTI" value="100000.0"/>
+    <param name="linearTD" value="0.0"/>
+    <param name="angularKPP" value="0.8"/>
+    <param name="angularKP" value="2"/>
+    <param name="angularTI" value="50.0"/>
+    <param name="angularTD" value="0.0"/>
+    <param name="globalSttX" value="0.0"/>
+    <param name="globalSttY" value="0.0"/>
+    <param name="globalSttOri" value="0.0"/>
+    <param name="aheadTime" value="1.0"/>
+    <node name="keyboard_node" pkg="navigation_pkg" type="keyboard_node" />
+    <node name="real_time_tracker" pkg="navigation_pkg" type="real_time_tracker" />
+    <!--<node name="map_server_node" pkg="map_server" type="map_server" args="$(find navigation_pkg)/maps/gmapping.yaml" />-->
+    <node name="rviz_screen" pkg="rviz" type="rviz" args="-d $(find navigation_pkg)/rviz/routing.rviz"/>
+    <node pkg="tf" type="static_transform_publisher" name="tf1" args="0.0 0.0 0.0 0.0 0.0 0.0 world map 100" />
+    <node pkg="tf" type="static_transform_publisher" name="tf2" args="0.0 0.0 0.0 0.0 0.0 0.0 world odom 100" />
+    <!--<node pkg="navigation_pkg" name="odom_tracker_node" type="odom_tracker_node" />-->
+</launch>
